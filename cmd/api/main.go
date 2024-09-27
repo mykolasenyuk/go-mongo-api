@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"mongo-api/db"
+	"mongo-api/handlers"
 	"mongo-api/services"
 	"net/http"
 	"time"
@@ -30,7 +31,8 @@ func main() {
 	}()
 
 	services.New(mongoClient)
+
 	log.Println("Server running in port", 8080)
-	log.Fatal(http.ListenAndServe("8080", handlers.CreateRouter()))
+	log.Fatal(http.ListenAndServe(":8080", handlers.CreateRouter()))
 
 }

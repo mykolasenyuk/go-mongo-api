@@ -10,7 +10,7 @@ type Response struct {
 	Code int
 }
 
-func CreateRouter() chi.Mux {
+func CreateRouter() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{
 		AllowedOrigins:   []string{"https://*", "http://*"},
@@ -20,5 +20,27 @@ func CreateRouter() chi.Mux {
 		AllowCredentials: true,
 		MaxAge:           300,
 	}))
+	router.Route("/api", func(router chi.Router) {
+
+		// version 1
+		router.Route("/v1", func(router chi.Router) {
+
+			router.Get("/healthcheck", healthCheck)
+			router.Post("/create", createTodo)
+			//router.Get("/todos", getTodos)
+			//router.Get("/todos/{id}", getTodoById)
+
+			//router.Put("/todos/update/{id}", updateTodo)
+			//router.Delete("/todos/delete/{id}", deleteTodo)
+
+		})
+
+		// version 2 - add it if you want
+		// router.Route("/v2", func(router chi.Router) {
+		// })
+
+	})
+
+	return router
 
 }
