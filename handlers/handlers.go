@@ -34,7 +34,7 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	err = todo.InsertTodo(todo)
+	newTodo, err := todo.InsertTodo(todo)
 	if err != nil {
 		errorRes := Response{
 			Msg:  "Error",
@@ -44,10 +44,11 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Use newTodo when sending the response
 	res := Response{
 		Msg:  "Success! Created Todo",
 		Code: 201,
-		Data: todo,
+		Data: newTodo,
 	}
 
 	jsonStr, err := json.Marshal(res)
