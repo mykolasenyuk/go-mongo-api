@@ -15,3 +15,4 @@ start:
 	@env MONGO_DB_USERNAME=${MONGO_DB_USERNAME} MONGO_DB_PASSWORD=${MONGO_DB_PASSWORD} ./${BINARY}
 
 restart: build start
+
