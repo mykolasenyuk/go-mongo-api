@@ -8,6 +8,7 @@ import (
 type Response struct {
 	Msg  string
 	Code int
+	Data interface{} `json:"data"`
 }
 
 func CreateRouter() *chi.Mux {

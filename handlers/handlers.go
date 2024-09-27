@@ -46,6 +46,7 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 	res := Response{
 		Msg:  "Success! Created Todo",
 		Code: 201,
+		Data: todo,
 	}
 
 	jsonStr, err := json.Marshal(res)
